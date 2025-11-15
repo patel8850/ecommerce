@@ -5,14 +5,33 @@ import { Item } from "../Components/Item";
 
 export const ShopCategory = (props) => {
   const abc = useContext(ShopContext);
+
   return (
-    <div>
-      <img className="h-140 w-full" src={props.banner} alt="" />
-      <p>
-        <span>Showing 1-12</span> Out of 36 Products
+    <div className="">
+      {/* Banner */}
+      <img
+        className="w-full h-85 sm:h-80 md:h-100 lg:h-140  rounded-md"
+        src={props.banner}
+        alt=""
+      />
+
+      {/* Info text */}
+      <p className="mt-4 text-center text-sm sm:text-base md:text-lg">
+        <span className="font-semibold">Showing 1–12</span> out of 36 Products
       </p>
-      <div>{/* Short by <img src={dropdown_icon} alt="" /> */}</div>
-      <div className="grid grid-cols-4">
+
+      {/* Product grid */}
+      <div
+        className="
+          grid 
+          grid-cols-2 
+          sm:grid-cols-3 
+          md:grid-cols-4 
+          gap-4 
+          sm:gap-6 
+          mt-6
+        "
+      >
         {AllProduct.map((item, i) => {
           if (props.category === item.category) {
             return (
@@ -25,9 +44,10 @@ export const ShopCategory = (props) => {
                 oldprice={item.oldprice}
               />
             );
-          } else null;
+          } else return null;
         })}
       </div>
     </div>
   );
 };
+
