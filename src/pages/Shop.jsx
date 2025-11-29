@@ -5,7 +5,6 @@ import { NewCollections } from "../Components/NewCollections"
 import { NewsLetter } from "../Components/newsLetter"
 const Shop = ()=>{
   return <div>
-
     <Hero/>
     <Popular/>
     <Offers/>
