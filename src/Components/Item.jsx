@@ -6,13 +6,20 @@ export const Item = (props) => {
       <Link to={`/product/${props.id}`}>
         <img
           onClick={() => window.scrollTo(0, 0)}
-          className="  h-80 w-77 sm:h-100 sm:w-80 object-cover rounded-md"
+          className="
+            w-full 
+            h-54 sm:h-72 md:h-112
+            object-cover 
+            rounded-md
+          "
           src={props.image}
           alt={props.name}
         />
       </Link>
 
-      <p className="mt-2 text-sm sm:text-base font-medium text-gray-800">{props.name}</p>
+      <p className="mt-2 text-sm sm:text-base font-medium text-gray-800">
+        {props.name}
+      </p>
 
       <div className="flex gap-2 sm:gap-3 text-sm sm:text-base">
         <div className="font-semibold">₹{props.newprice}</div>

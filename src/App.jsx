@@ -13,7 +13,6 @@ import kidBanner from './assets/Images/kidposter.jpg'
 function App() {
   return (
     <div>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Shop />} />
         <Route path="/mens" element={<ShopCategory banner={menBanner} category="mens" />} />

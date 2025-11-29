@@ -3,70 +3,94 @@ import star from "../assets/Images/star.png";
 import graystar from "../assets/Images/gray_star.png";
 import { ShopContext } from "../Context/ShopContext";
 
-export const ProductDisplay = (props) => {
-  const { product } = props;
+export const ProductDisplay = ({ product }) => {
   const { addtoCart } = useContext(ShopContext);
 
   return (
-    <div className=" md:ml-23 p-3 ">
-      <div className="flex flex-col lg:flex-row  lg:gap-20">
+    <div className="px-4 py-6 max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row gap-10">
+        
         {/* Left Section */}
-        <div className="flex flex-row  items-center lg:items-start justify-center lg:justify-start">
+        <div className="flex flex-col sm:flex-row lg:flex-col items-center gap-4">
+          
           {/* Small Images */}
-          <div className="flex-col  gap-  mb-4 sm:mb-0 sm:ml-3">
-            <img className="h-33 w-32 md:h-41 md:w-36" src={product.image} alt="" />
-            <img className=" h-33 w-32 md:h-41 md:w-36" src={product.image} alt="" />
-            <img className="h-33 w-32 md:h-41 md:w-36" src={product.image} alt="" />
-            <img className=" h-33 w-32 md:h-41 md:w-36" src={product.image} alt="" />
+          <div className="flex sm:flex-col gap-3">
+            {[1, 2, 3, 4].map((n) => (
+              <img
+                key={n}
+                src={product.image}
+                alt="small preview"
+                className="w-20 h-20 sm:w-24 sm:h-24 rounded-md border object-cover"
+              />
+            ))}
           </div>
 
           {/* Main Image */}
           <div>
-            <img className="h-90 w-85 md:h-165 md:w-140 ml-4" src={product.image} alt="" />
+            <img
+              src={product.image}
+              alt=""
+              className="w-72 h-80 sm:w-96 sm:h-[450px] lg:w-[500px] lg:h-[550px] rounded-lg object-cover"
+            />
           </div>
         </div>
 
         {/* Right Section */}
         <div className="text-center lg:text-left">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{product.name}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            {product.name}
+          </h1>
 
-          <div className="flex justify-center lg:justify-start mb-5">
+          {/* Rating */}
+          <div className="flex justify-center lg:justify-start items-center mb-5">
             {[...Array(4)].map((_, i) => (
-              <img key={i} className="h-6 w-6" src={star} alt="star" />
+              <img key={i} src={star} className="w-6 h-6" alt="star" />
             ))}
-            <img className="h-6 w-6 " src={graystar} alt="graystar" />
+            <img src={graystar} className="w-6 h-6" alt="gray star" />
             <p className="ml-2 text-base">(122)</p>
           </div>
 
+          {/* Price */}
           <div className="flex justify-center lg:justify-start gap-4 mb-5 text-xl sm:text-2xl">
-            <div className="text-gray-600 font-bold line-through">${product.oldprice}</div>
-            <div className="text-red-500 font-bold">${product.newprice}</div>
+            <p className="line-through text-gray-600 font-semibold">
+              ${product.oldprice}
+            </p>
+            <p className="text-red-600 font-bold">${product.newprice}</p>
           </div>
 
-          <p className="text-sm sm:text-base mb-2 px-1 sm:px-0">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti tenetur quibusdam eos, harum excepturi.
+          {/* Description */}
+          <p className="text-sm sm:text-base mb-3 px-1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis corrupti
+            tenetur quibusdam eos, harum excepturi.
           </p>
 
-          <div>
-            <div className="text-2xl sm:text-3xl mb-3 mt-5">Select Size</div>
-            <div className="flex justify-center lg:justify-start mt-3 gap-2 sm:gap-3 flex-wrap">
+          {/* Sizes */}
+          <div className="mt-6">
+            <p className="text-2xl sm:text-3xl font-semibold mb-3">Select Size</p>
+
+            <div className="flex justify-center lg:justify-start gap-2 sm:gap-3 flex-wrap">
               {["S", "M", "L", "XL", "XXL"].map((size) => (
-                <div key={size} className="bg-gray-300 px-4 py-2 sm:p-4 rounded-md cursor-pointer hover:bg-gray-400">
+                <span
+                  key={size}
+                  className="bg-gray-200 px-4 py-2 sm:px-6 sm:py-3 rounded-md cursor-pointer hover:bg-gray-300 transition"
+                >
                   {size}
-                </div>
+                </span>
               ))}
             </div>
           </div>
 
+          {/* Add to Cart */}
           <button
-            className="text-2xl p-2 bg-red-600 px-6 sm:p-5 text-white  mt-7 mb-8 rounded-md hover:bg-red-700 transition"
             onClick={() => addtoCart(product.id)}
+            className="text-xl sm:text-2xl bg-red-600 text-white px-8 py-3 mt-8 mb-6 rounded-md hover:bg-red-700 transition"
           >
             ADD TO CART
           </button>
 
+          {/* Extra Info */}
           <p className="text-base">
-            <span className="font-semibold">Category:</span> Women, T-shirt, Crop top
+            <span className="font-semibold">Category:</span> Men, T-shirt
           </p>
           <p className="text-sm sm:text-base">
             <span className="font-semibold">Tags:</span> Modern, Latest

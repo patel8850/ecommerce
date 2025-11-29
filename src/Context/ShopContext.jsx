@@ -32,15 +32,18 @@ const ShopContextProvider = (props) => {
   }
   return totalAmount;
 };
- const getTotalItem = ()=>{
-  let totalItem = ""
-  for(const item in cartItems){
-    if (cartItems[item]>0){
-      totalItem+=cartItems[item]
+ const getTotalItem = () => {
+  let totalItem = 0;  // should be a number
+
+  for (const item in cartItems) {
+    if (cartItems[item] > 0) {
+      totalItem += cartItems[item];  // add correctly
     }
   }
-  return totalItem
- }
+
+  return totalItem === 0 ? "" : totalItem;;
+};
+
 
     const contextValue = {AllProduct,getTotalItem,getTotalCart,cartItems,addtoCart,removeCart}
   return (
